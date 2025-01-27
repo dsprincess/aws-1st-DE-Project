@@ -1,0 +1,14 @@
+
+no more s3 to pgadmin
+
+
+https://www.youtube.com/watch?v=bC-G4OcLr5g&t=10s
+
+rds public
+pgadmin connect -as is public
+import csv
+create database
+import table
+
+cost will only be VPC public1v4
+
