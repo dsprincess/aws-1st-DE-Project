@@ -2,7 +2,9 @@ version: 2
 
 sources:
   - name: adw
+    database: adventureworks2022
+    schema: public
     tables:
-      - name: sales_header
-      - name: sales_order_detail
+      - name: salesorderheader
+      - name: salesorderdetail
 

@@ -1,9 +1,12 @@
-version:2
+version: 2
 
 models:
   - name: trans_sales_orders
     columns:
       - name: SalesOrderID
         tests:
-          - not_null
           - unique
+          - not_null
+      - name: CustomerID
+        tests:
+          - not_null

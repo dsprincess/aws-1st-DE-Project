@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: sales_header
+  - name: stg_sales_header
     description: "Header data for sales orders."
     columns:
       - name: SalesOrderID
@@ -11,7 +11,7 @@ models:
       - name: CustomerID
         tests:
           - not_null
-  - name: sales_order_detail
+  - name: stg_sales_order_detail
     description: "Detailed line items for sales orders."
     columns:
       - name: SalesOrderID
