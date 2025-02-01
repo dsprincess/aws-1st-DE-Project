@@ -6,5 +6,5 @@ with sales_header as (
         "TotalDue"
     from {{ source('adw', 'salesorderheader') }}
 )
-select * from sales_header;
+select * from sales_header
 
