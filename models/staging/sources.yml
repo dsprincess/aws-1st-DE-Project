@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: adw
+    tables:
+      - name: sales_header
+      - name: sales_order_detail
+

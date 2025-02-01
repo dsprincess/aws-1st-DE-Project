@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: sales_header
+    description: "Header data for sales orders."
+    columns:
+      - name: SalesOrderID
+        tests:
+          - unique
+          - not_null
+      - name: CustomerID
+        tests:
+          - not_null
+  - name: sales_order_detail
+    description: "Detailed line items for sales orders."
+    columns:
+      - name: SalesOrderID
+        tests:
+          - not_null
+      - name: ProductID
+        tests:
+          - not_null
