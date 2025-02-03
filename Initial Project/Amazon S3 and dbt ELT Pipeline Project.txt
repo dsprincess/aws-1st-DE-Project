@@ -1,0 +1,100 @@
+# Amazon S3 and dbt ELT Pipeline Project
+
+## Overview
+This project focuses on designing and implementing an ELT (Extract, Load, Transform) pipeline using Amazon S3 for data storage, dbt for data transformation, and PostgreSQL as the data warehouse. The pipeline processes and transforms the **AdventureWorks 2022 (ADW 2022)** dataset, demonstrating how raw data can be structured into actionable insights.
+
+---
+
+## Project Scope
+
+- **Data Ingestion:** Store structured CSV files in an Amazon S3 bucket for centralized data management.
+  - Reference: [YouTube Guide] (https://www.youtube.com/watch?v=HYv9eMZYR5c)
+
+- **Data Transfer:** Automate data movement from S3 to AWS RDS PostgreSQL using AWS Lambda functions.
+
+- **Data Transformation:** Use dbt to clean, structure, and model data into analytics-ready tables.
+
+- **Infrastructure & Security:** Deploy an **EC2 bastion host** for secure access while keeping RDS private within a **VPC**.
+  - Reference: [YouTube Guide] (https://www.youtube.com/watch?v=gQc6vov1FfA)
+
+- **Analytics Dashboard (Future Work):** Integrate with a BI tool for visualization and reporting.
+
+---
+
+## Implementation Steps
+
+### 1. Setting Up AWS Resources
+- Create an **Amazon S3** bucket for storing raw CSV files.
+- Deploy an **AWS RDS PostgreSQL** instance within a **private VPC**.
+- Configure an **EC2 bastion host** to securely connect to the **RDS instance**.
+
+### 2. Automating Data Transfer
+- Set up an **AWS Lambda function** to detect new file uploads in S3 and trigger data transfer.
+- Assign **IAM policies** to Lambda for secure access to both **S3** and **RDS**.
+- Implement error-handling mechanisms to ensure smooth data movement.
+
+  **References:**
+  - [YouTube Guide (India)] (https://www.youtube.com/watch?v=MEjWUxdY-bk)
+  - [YouTube Guide (USA)] (https://www.youtube.com/watch?v=ee1gXaGuvJQ)
+  - [GitHub Code Sample] (https://github.com/RekhuGopal/PythonHacks/blob/main/AWS_ETL_Load_Data_from_S3_to_RDS_PostgreSQL_with_Lambda/sample4.csv)
+
+### 3. Setting Up RDS PostgreSQL & pgAdmin
+- Create an **RDS PostgreSQL** instance and connect it to **pgAdmin** for database management.
+  - Reference: [YouTube Guide] (https://www.youtube.com/watch?v=I_fTQTsz2nQ)
+
+### 4. Configuring dbt for Data Transformation
+- Initialize a **dbt project** and configure it for **PostgreSQL**.
+- Develop **transformation models** to clean, aggregate, and structure raw data.
+
+  **References:**
+  - [Getting Started with dbt] (https://medium.com/@suffyan.asad1/getting-started-with-dbt-data-build-tool-a-beginners-guide-to-building-data-transformations-28e335be5f7e)
+
+  **Setup Steps:**
+  1. Create a **virtual environment**:
+     - `Ctrl + Shift + P` → Search "Python Environment" → Select → Wait.
+  2. Add a **requirements file** inside the environment folder.
+  3. Open a terminal and activate the environment:
+     ```
+     Scripts\Activate
+     ```
+  4. Install dependencies:
+     ```
+     pip install -r requirements.txt
+     ```
+  5. Initialize dbt:
+     ```
+     dbt init
+     ```
+  6. Configure **dbt profile** and test the connection:
+     ```
+     dbt debug
+     ```
+
+---
+
+## Current Status
+The project was paused before the **dbt modeling phase** due to **AWS cost constraints**. Future improvements may involve exploring alternative cloud providers or optimizing the infrastructure to **reduce operational costs**.
+
+---
+
+## Infrastructure Optimization & Cost Considerations
+- **Minimize Public RDS Usage:** Keeping RDS public results in unnecessary costs due to IPv4 charges.
+- **Optimize VPC Endpoints:** Properly configure VPC endpoints to reduce traffic over the public internet.
+- **Reduce Lambda Execution Costs:** Avoid unnecessary data transfer through NAT Gateways, which incur hourly charges.
+
+---
+
+## AWS Cost Breakdown
+
+### 1. RDS with Public Access Enabled
+- Setting **Public Access = Yes** assigns a **public IP** to the RDS instance, incurring costs even on the **free-tier**.
+
+### 2. Lambda Function in VPC
+- **Lambda in a VPC** requires **internet access** to interact with **S3, RDS**, and other AWS services.
+- If not configured correctly, traffic may route through a **NAT Gateway**, leading to hourly charges.
+- Missing **VPC Endpoints** can result in unintended **public IPv4 usage**, adding costs.
+
+### 3. VPC Endpoints Configuration
+- Misconfigured **VPC endpoints** (e.g., for **S3 or RDS**) can cause data to flow through the **public internet**, leading to additional expenses.
+
+---
