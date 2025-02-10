@@ -3,7 +3,7 @@
 ## Overview
 This project focuses on designing and implementing an ELT (Extract, Load, Transform) pipeline using **Amazon S3** for data storage, **dbt** for data transformation, and **PostgreSQL** as the data warehouse. The pipeline processes and transforms the **AdventureWorks 2022 (ADW 2022)** data SalesOrderHeader and SalesOrderDetail, demonstrating how raw data can be structured into actionable insights.
 
-This project is derived from the initial one, which can be found in the file Amazon S3 and dbt ELT Pipeline Project.
+This project is derived from the initial one, which can be found in the file "Amazon S3 and dbt ELT Pipeline Project".
 
 ---
 
